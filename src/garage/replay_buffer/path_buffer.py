@@ -78,6 +78,26 @@ class PathBuffer:
         idx = np.random.randint(self._transitions_stored, size=batch_size)
         return {key: buf_arr[idx] for key, buf_arr in self._buffer.items()}
 
+    @property
+    def n_transitions_stored(self):
+        """Number of transitions stored in the buffer.
+
+        Returns:
+            int
+
+        """
+        return self._transitions_stored
+
+    @property
+    def n_paths_stored(self):
+        """Number of transitions stored in the buffer.
+
+        Returns:
+            int
+
+        """
+        return len(self._path_segments)
+
     def _add_batch(self, samples):
         """Adds batch of samples, returning the segments where they are stored.
 
