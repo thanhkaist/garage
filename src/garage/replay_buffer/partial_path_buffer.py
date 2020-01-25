@@ -26,7 +26,9 @@ class PartialPathBuffer:
                 considered the end of a path.
 
         Raises:
-            ValueError: if the
+            ValueError: if the number of samples, path_keys, and path_ends do
+                not match.
+
         """
         n_samples = len(path_keys)
         self._transitions_stored += n_samples
@@ -52,6 +54,13 @@ class PartialPathBuffer:
                 del self._partial_paths[path_key]
 
     def sample_path(self):
+        """Sample a single path from the buffer.
+
+        Returns:
+            dict[str, np.ndarray]: Dictionary of array of shape (path_len,
+                flat_dim).
+
+        """
         total_paths = (len(self._partial_paths) +
                        self._completed_buffer.n_paths_stored)
         path_num = np.random.randint(total_paths)
