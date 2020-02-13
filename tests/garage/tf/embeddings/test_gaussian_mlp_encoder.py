@@ -39,7 +39,10 @@ class TestGaussianMLPEncoder(TfGraphTestCase):
         obs, _, _, _ = env.step(1)
 
         latent, _ = embedding.forward(obs)
+        latents, _ = embedding.forward_n([obs] * 5)
         assert env.action_space.contains(latent)
+        for latent in latents:
+            assert env.action_space.contains(latent)
 
     @pytest.mark.parametrize('obs_dim, embedding_dim', [
         ((1, ), (1, )),
@@ -57,7 +60,7 @@ class TestGaussianMLPEncoder(TfGraphTestCase):
         task_input = tf.compat.v1.placeholder(tf.float32,
                                               shape=(None, None,
                                                      embedding.input_dim))
-        embedding.build(task_input)
+        embedding.build(task_input, name='default')
 
         env.reset()
         obs, _, _, _ = env.step(1)
@@ -79,7 +82,7 @@ class TestGaussianMLPEncoder(TfGraphTestCase):
             embedding_pickled = pickle.loads(p)
             task_input = tf.compat.v1.placeholder(
                 tf.float32, shape=(None, None, embedding_pickled.input_dim))
-            embedding_pickled.build(task_input)
+            embedding_pickled.build(task_input, name='default')
 
             output2 = sess.run(
                 [
@@ -88,6 +91,15 @@ class TestGaussianMLPEncoder(TfGraphTestCase):
                 ],
                 feed_dict={embedding_pickled.model.input: [[obs.flatten()]]})
             assert np.array_equal(output1, output2)
+
+    def test_clone(self):
+        env = GarageEnv(DummyBoxEnv(obs_dim=(2, ), action_dim=(2, )))
+        embedding_spec = InOutSpec(input_space=env.spec.observation_space,
+                                   output_space=env.spec.action_space)
+        embedding = GaussianMLPEncoder(embedding_spec)
+        clone_embedding = embedding.clone(name='cloned')
+        assert clone_embedding.input_dim == embedding.input_dim
+        assert clone_embedding.output_dim == embedding.output_dim
 
     def test_auxiliary(self):
         input_space = akro.Box(np.array([-1, -1]), np.array([1, 1]))
@@ -99,7 +111,7 @@ class TestGaussianMLPEncoder(TfGraphTestCase):
         task_input = tf.compat.v1.placeholder(tf.float32,
                                               shape=(None, None,
                                                      embedding.input_dim))
-        embedding.build(task_input)
+        embedding.build(task_input, name='default')
         # 9 Layers: (3 hidden + 1 output) * (1 weight + 1 bias) + 1 log_std
         assert len(embedding.get_params()) == 9
         assert len(embedding.get_global_vars()) == 9
