@@ -105,12 +105,12 @@ RUN pip install --upgrade pip setuptools wheel
 # In this step only the presence of the file mjkey.txt is required, so we only
 # create an empty file
 RUN touch $HOME/.mujoco/mjkey.txt
-RUN pip install garage && \
-    pip install garage[all] && \
-    rm -r $HOME/.cache/pip
-
-COPY --chown=$user:$user docker/entrypoint-runtime.sh $HOME/code/garage/docker/entrypoint-runtime.sh
-ENTRYPOINT ["code/garage/docker/entrypoint-runtime.sh"]
+#RUN pip install garage && \
+#    pip install garage[all] && \
+#    rm -r $HOME/.cache/pip
+#
+#COPY --chown=$user:$user docker/entrypoint-runtime.sh $HOME/code/garage/docker/entrypoint-runtime.sh
+#ENTRYPOINT ["code/garage/docker/entrypoint-runtime.sh"]
 
 
 # Headless machine with xvfb, i.e. so rendering works ##########################
