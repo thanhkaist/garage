@@ -51,6 +51,8 @@ EXTRAS['dm_control'] = [
     'dm_control==0.0.300771433',
 ]
 
+EXTRAS['pybullet'] = ['pybullet']
+
 EXTRAS['all'] = list(set(sum(EXTRAS.values(), [])))
 
 # Development dependencies (*not* included in 'all')
