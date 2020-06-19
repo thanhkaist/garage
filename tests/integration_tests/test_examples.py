@@ -90,7 +90,7 @@ def test_dqn_pong():
     env = os.environ.copy()
     env['GARAGE_EXAMPLE_TEST_N_EPOCHS'] = '1'
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'tf/dqn_pong.py'), '--buffer_size', '5',
+        EXAMPLES_ROOT_DIR / 'tf/dqn_pong.py', '--buffer_size', '5',
         '--max_path_length', '5'
     ],
                           check=False,
@@ -108,8 +108,7 @@ def test_ppo_memorize_digits():
     env = os.environ.copy()
     env['GARAGE_EXAMPLE_TEST_N_EPOCHS'] = '1'
     command = [
-        str(EXAMPLES_ROOT_DIR / 'tf/ppo_memorize_digits.py'), '--batch_size',
-        '4'
+        EXAMPLES_ROOT_DIR / 'tf/ppo_memorize_digits.py', '--batch_size', '4'
     ]
     assert subprocess.run(command, check=False, env=env).returncode == 0
 
@@ -125,7 +124,7 @@ def test_trpo_cubecrash():
     env = os.environ.copy()
     env['GARAGE_EXAMPLE_TEST_N_EPOCHS'] = '1'
     assert subprocess.run(
-        [str(EXAMPLES_ROOT_DIR / 'tf/trpo_cubecrash.py'), '--batch_size', '4'],
+        [EXAMPLES_ROOT_DIR / 'tf/trpo_cubecrash.py', '--batch_size', '4'],
         check=False,
         env=env).returncode == 0
 
@@ -135,7 +134,7 @@ def test_trpo_cubecrash():
 def test_step_env():
     """Test step_env.py."""
     assert subprocess.run(
-        [str(EXAMPLES_ROOT_DIR / 'step_env.py'), '--n_steps', '1'],
+        [EXAMPLES_ROOT_DIR / 'step_env.py', '--n_steps', '1'],
         check=False).returncode == 0
 
 
@@ -145,7 +144,7 @@ def test_step_env():
 def test_step_dm_control_env():
     """Test step_dm_control_env.py."""
     assert subprocess.run(
-        [str(EXAMPLES_ROOT_DIR / 'step_dm_control_env.py'), '--n_steps', '1'],
+        [EXAMPLES_ROOT_DIR / 'step_dm_control_env.py', '--n_steps', '1'],
         check=False).returncode == 0
 
 
@@ -155,8 +154,8 @@ def test_step_dm_control_env():
 def test_maml_halfcheetah():
     """Test maml_trpo_half_cheetah_dir.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py'),
-        '--epochs', '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py', '--epochs',
+        '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -167,8 +166,8 @@ def test_maml_halfcheetah():
 def test_pearl_half_cheetah_vel():
     """Test pearl_half_cheetah_vel.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/pearl_half_cheetah_vel.py'),
-        '--num_epochs', '1', '--num_train_tasks', '5', '--num_test_tasks', '1',
+        EXAMPLES_ROOT_DIR / 'torch/pearl_half_cheetah_vel.py', '--num_epochs',
+        '1', '--num_train_tasks', '5', '--num_test_tasks', '1',
         '--encoder_hidden_size', '2', '--net_size', '2',
         '--num_steps_per_epoch', '5', '--num_initial_steps', '5',
         '--num_steps_prior', '1', '--num_extra_rl_steps_posterior', '1',
@@ -184,7 +183,7 @@ def test_pearl_half_cheetah_vel():
 def test_pearl_metaworld_ml1_push():
     """Test pearl_ml1_push.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml1_push.py'),
+        EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml1_push.py',
         '--num_epochs', '1', '--num_train_tasks', '5', '--num_test_tasks', '1',
         '--encoder_hidden_size', '2', '--net_size', '2',
         '--num_steps_per_epoch', '5', '--num_initial_steps', '5',
@@ -200,8 +199,8 @@ def test_pearl_metaworld_ml1_push():
 def test_pearl_metaworld_ml10():
     """Test pearl_ml10.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml10.py'),
-        '--num_epochs', '1', '--num_train_tasks', '1', '--num_test_tasks', '1',
+        EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml10.py', '--num_epochs',
+        '1', '--num_train_tasks', '1', '--num_test_tasks', '1',
         '--encoder_hidden_size', '1', '--net_size', '2',
         '--num_steps_per_epoch', '2', '--num_initial_steps', '2',
         '--num_steps_prior', '1', '--num_extra_rl_steps_posterior', '1',
@@ -217,8 +216,8 @@ def test_pearl_metaworld_ml10():
 def test_pearl_metaworld_ml45():
     """Test pearl_ml45.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml45.py'),
-        '--num_epochs', '1', '--num_train_tasks', '1', '--num_test_tasks', '1',
+        EXAMPLES_ROOT_DIR / 'torch/pearl_metaworld_ml45.py', '--num_epochs',
+        '1', '--num_train_tasks', '1', '--num_test_tasks', '1',
         '--encoder_hidden_size', '1', '--net_size', '2',
         '--num_steps_per_epoch', '2', '--num_initial_steps', '2',
         '--num_steps_prior', '1', '--num_extra_rl_steps_posterior', '1',
@@ -234,8 +233,8 @@ def test_pearl_metaworld_ml45():
 def test_maml_trpo_metaworld_ml10():
     """Test maml_trpo_ml10.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/maml_trpo_metaworld_ml10.py'),
-        '--epochs', '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/maml_trpo_metaworld_ml10.py', '--epochs',
+        '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -246,8 +245,8 @@ def test_maml_trpo_metaworld_ml10():
 def test_maml_trpo():
     """Test maml_trpo_half_cheetah_dir.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py'),
-        '--epochs', '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/maml_trpo_half_cheetah_dir.py', '--epochs',
+        '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -258,8 +257,8 @@ def test_maml_trpo():
 def test_maml_ppo():
     """Test maml_ppo_half_cheetah_dir.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/maml_ppo_half_cheetah_dir.py'),
-        '--epochs', '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/maml_ppo_half_cheetah_dir.py', '--epochs',
+        '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -270,8 +269,8 @@ def test_maml_ppo():
 def test_maml_vpg():
     """Test maml_vpg_half_cheetah_dir.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/maml_vpg_half_cheetah_dir.py'),
-        '--epochs', '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/maml_vpg_half_cheetah_dir.py', '--epochs',
+        '1', '--rollouts_per_task', '1', '--meta_batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -282,8 +281,8 @@ def test_maml_vpg():
 def test_rl2_metaworld_ml1_push():
     """Test rl2_ppo_ml1.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml1_push.py'),
-        '--n_epochs', '1', '--episode_per_task', '1', '--meta_batch_size', '10'
+        EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml1_push.py', '--n_epochs',
+        '1', '--episode_per_task', '1', '--meta_batch_size', '10'
     ],
                           check=False).returncode == 0
 
@@ -294,8 +293,8 @@ def test_rl2_metaworld_ml1_push():
 def test_rl2_ppo_metaworld_ml10():
     """Test rl2_ppo_ml10.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml10.py'), '--n_epochs',
-        '1', '--episode_per_task', '1', '--meta_batch_size', '10'
+        EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml10.py', '--n_epochs', '1',
+        '--episode_per_task', '1', '--meta_batch_size', '10'
     ],
                           check=False).returncode == 0
 
@@ -306,7 +305,7 @@ def test_rl2_ppo_metaworld_ml10():
 def test_rl2_ppo_metaworld_ml10_meta_test():
     """Test rl2_ppo_ml10_meta_test.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml10_meta_test.py'),
+        EXAMPLES_ROOT_DIR / 'tf/rl2_ppo_metaworld_ml10_meta_test.py',
         '--n_epochs', '1', '--episode_per_task', '1', '--meta_batch_size', '10'
     ],
                           check=False).returncode == 0
@@ -318,8 +317,8 @@ def test_rl2_ppo_metaworld_ml10_meta_test():
 def test_mtppo_metaworld_ml1_push():
     """Test ppo_metaworld_ml1_push.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_ml1_push.py'),
-        '--epochs', '1', '--batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_ml1_push.py', '--epochs',
+        '1', '--batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -330,8 +329,8 @@ def test_mtppo_metaworld_ml1_push():
 def test_mtppo_metaworld_mt10():
     """Test ppo_metaworld_mt10.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_mt10.py'), '--epochs',
-        '1', '--batch_size', '1', '--n_worker', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_mt10.py', '--epochs', '1',
+        '--batch_size', '1', '--n_worker', '1'
     ],
                           check=False).returncode == 0
 
@@ -343,8 +342,8 @@ def test_mtppo_metaworld_mt10():
 def test_mtppo_metaworld_mt50():
     """Test ppo_metaworld_mt50.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_mt50.py'), '--epochs',
-        '1', '--batch_size', '1', '--n_worker', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mtppo_metaworld_mt50.py', '--epochs', '1',
+        '--batch_size', '1', '--n_worker', '1'
     ],
                           check=False).returncode == 0
 
@@ -355,8 +354,8 @@ def test_mtppo_metaworld_mt50():
 def test_trpo_metaworld_ml1_push():
     """Test trpo_metaworld_ml1_push.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_ml1_push.py'),
-        '--epochs', '1', '--batch_size', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_ml1_push.py', '--epochs',
+        '1', '--batch_size', '1'
     ],
                           check=False).returncode == 0
 
@@ -367,8 +366,8 @@ def test_trpo_metaworld_ml1_push():
 def test_trpo_metaworld_mt10():
     """Test trpo_metaworld_mt10.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_mt10.py'), '--epochs',
-        '1', '--batch_size', '1', '--n_worker', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_mt10.py', '--epochs', '1',
+        '--batch_size', '1', '--n_worker', '1'
     ],
                           check=False).returncode == 0
 
@@ -380,7 +379,7 @@ def test_trpo_metaworld_mt10():
 def test_trpo_metaworld_mt50():
     """Test trpo_metaworld_mt50.py."""
     assert subprocess.run([
-        str(EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_mt50.py'), '--epochs',
-        '1', '--batch_size', '1', '--n_worker', '1'
+        EXAMPLES_ROOT_DIR / 'torch/mttrpo_metaworld_mt50.py', '--epochs', '1',
+        '--batch_size', '1', '--n_worker', '1'
     ],
                           check=False).returncode == 0
